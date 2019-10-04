@@ -1,0 +1,84 @@
+{% extends 'ressource_base.html' %}
+{% load i18n %}
+{% load formulairesesms %}
+
+{% block titre %}
+    <h3>{% trans "Ressource details" %}</h3>
+{% endblock titre %}
+
+{% block maincontent %}
+    <div class="w3-container w3-padding-8">
+        <table class="w3-table-all"  border="1">
+        <tr><th  width="30%">{% verbose_name_tag object 'nom' %}</th><th>{{ object.nom }}</th></tr>
+        <tr><td>{% verbose_name_tag object 'ville'%}</td><td>{{object.ville }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'codepostal'%}</td><td>{{object.codepostal }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'web'%}</td><td>{{object.web|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'telephone'%}</td><td>{{object.telephone|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'courriel'%}</td><td>{{object.courriel|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'objectif'%}</td><td>{{object.objectif|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'region'%}</td><td>{{object.region|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'anciennete'%}</td><td>{{object.anciennete|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'lieutravail'%}</td><td>{{object.lieutravail|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'financement'%}</td><td>{{object.financement|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'heuresouverture'%}</td><td>{{object.heuresouverture|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'profilpatient'%}</td><td>{{object.profilpatient|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'exclusion'%}</td><td>{{object.exclusion|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'forensicpatient'%}</td><td>{{object.forensicpatient|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'forensicpatientnombre'%}</td><td>{{object.forensicpatientnombre|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'multipleproblematique'%}</td><td>{{object.multipleproblematique|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'multipleproblematiquenombre'%}</td><td>{{object.multipleproblematiquenombre|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'approche'%}</td><td>{{object.approche|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'autochtones'%}</td><td>{{object.autochtones|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'autochtonestexte'%}</td><td>{{object.autochtonestexte|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'reference'%}</td><td>{{object.reference|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'delais'%}</td><td>{{object.delais|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'durees'%}</td><td>{{object.durees|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'listeattenteyn'%}</td><td>{{object.listeattenteyn|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'listeattenteduree'%}</td><td>{{object.listeattenteduree|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'commentaire'%}</td><td>{{object.commentaire|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'autreservice'%}</td><td>{{object.autreservice|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'noncontactable'%}</td><td>{{object.noncontactable|default:"" }}</td></tr>
+        <tr><td>{% verbose_name_tag object 'accepte'%}</td><td>{{object.accepte|default:"" }}</td></tr>
+        </table>
+        <h2>{% trans "Equipe" %}</h2>
+        <table class="w3-table-all">
+            <tr></tr><th>{% trans "Profession" %}</th><th>{% trans "Nombre" %}</th><th>{% trans "Temps" %}</th><th>{% trans "Tache" %}</th></tr>
+            {% for professionnel in object.equipe_set.all %}
+                <tr>
+                    <td>{{ professionnel.profession }}</td>
+                    <td>{{ professionnel.nombre }}</td>
+                    <td>{{ professionnel.duree|default:"" }}</td>
+                    <td>{{ professionnel.tache|default:"" }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+         <h2>{% trans "Documentation" %}</h2>
+        <table class="w3-table-all">
+            <tr><th>{% trans "Identification du document" %}</th><th>{% trans "Document" %}</th></tr>
+            {% for doc in object.document_set.all %}
+                <tr>
+                    <td>{{ doc.titrecourt }}</td>
+                    <td><a href="{{ doc.documentation.url }}">{% trans "Voir" %}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <h2>{% trans "ESMS" %}</h2>
+        <table class="w3-table-all">
+        <tr><th>{% trans "Code" %}</th><th>{% trans "Nombre de places" %}</th><th>{% trans "Clientèle" %}</th></tr>
+         {% for esms in object.esms_set.all %}
+             <tr>
+                <td>{{esms.choix_final}}</td><td>{{esms.nombre|default:""}}</td><td>{{esms.clientele|default:""}}</td>
+             </tr>
+         {% endfor %}
+         </table>
+        <br />
+
+    </div>
+    <footer>
+        <div class="w3-col w3-theme-l2">
+             <a class="w3-button" href="{% url 'listeressources' %}">{% trans "Retour a la liste" %}</a>
+             <a class="w3-button w3-theme-d2" href="{% url 'ressource_edit' object.id %}">{% trans "Faire des modifications" %}</a>
+        </div>
+    </footer>
+{% endblock maincontent %}
+

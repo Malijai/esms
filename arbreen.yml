@@ -1,0 +1,117 @@
+'0':
+  name: Low Intensity
+  choices: []
+'1':
+  name: Mobile
+  choices: ['3', '4']
+'2':
+  name: Non-Mobile
+  choices: ['3', '4']
+'3':
+  name: 24 Hours
+  choices: []
+'4':
+  name: Limited Hours
+  choices: []
+'5':
+  name: Continuing Care
+  choices: ['6', '7']
+'6':
+  name: Mobile
+  choices: ['8', '9', '0']
+'7':
+  name: Non-Mobile
+  choices: ['8', '9', '0']
+'8':
+  name: High Intensity
+  choices: []
+'9':
+  name: Medium Intensity
+  choices: []
+z:
+  name: Residential Services
+  choices: [a, b, e]
+a:
+  name: Secure
+  choices: []
+b:
+  name: Acute
+  choices: [c, d]
+c:
+  name: Hospital
+  choices: []
+d:
+  name: Non Hospital
+  choices: []
+e:
+  name: Non-Acute
+  choices: [m, n]
+f:
+  name: Time Limited
+  choices: [g, h]
+g:
+  name: 24h Support
+  choices: []
+h:
+  name: Daily Support
+  choices: []
+i:
+  name: Indefinite Stay
+  choices: [g, h]
+j:
+  name: Time Limited
+  choices: [g, h, l]
+k:
+  name: Indefinite Stay
+  choices: [g, h, l]
+l:
+  name: Lower Support
+  choices: []
+m:
+  name: Hospital
+  choices: [f, i]
+n:
+  name: Non Hospital
+  choices: [j, k]
+o:
+  name: Day &<br />Structured Activity Services
+  choices: [p, q]
+p:
+  name: Acute
+  choices: []
+q:
+  name: Non-Acute
+  choices: [r, w]
+r:
+  name: High Intensity
+  choices: [s, t, u, v]
+s:
+  name: Work
+  choices: []
+t:
+ name: Work Related Activity
+ choices: []
+u:
+  name: Other Structured Activity
+  choices: []
+v:
+  name: Social Contact
+  choices: []
+w:
+  name: Low Intensity
+  choices: [s, t, u, v]
+x:
+  name: Out-Patient &<br />Community Services
+  choices: [y, '5']
+y:
+  name: Emergency
+  choices: ['1', '2']
+qq:
+  name: Self-Help & Other<br />Non-Professional Services
+  choices: []
+rr:
+  name: Support &<br />Phone lines
+  choices: []
+ss:
+  name: Support or Respite<br />for Famillies or Friends
+  choices: []

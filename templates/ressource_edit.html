@@ -1,0 +1,85 @@
+{% extends 'ressource_base.html' %}
+{% load i18n %}
+
+{% block titre %}
+    <h4>Ressource EDIT</h4>
+{% endblock titre %}
+
+{% block maincontent %}
+    <div class="w3-container w3-padding-8">
+        <h2 class="w3-amber">{{ entete }}</h2>
+        <form method="POST" class="Entree-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="w3-table-all">
+                {{ form.as_table }}
+            </table>
+            <h3 class="w3-amber">{% trans "Détails sur les différents types d'employés et bénévoles qui travaillent dans la ressource" %}</h3>
+            {{ prof_formset.management_form }}
+            <table class="w3-table-all">
+                <tr class="w3-dark-grey">
+                    <th></th>
+                    <th>{% trans "Profession" %}</th>
+                    <th>{% trans "Nombre équivalent temps plein" %}</th>
+                    <th>{% trans "Tâches, fonctions" %}</th>
+                    <th>{% trans "Temps de travail moyen / employé" %}</th>
+                    <th>{% trans "Supprimer" %}</th>
+                </tr>
+            {% for prof in prof_formset %}
+                <tr>
+                <td>{{ prof.id }}</td>
+                <td>{{ prof.profession }}</td>
+                <td>{{ prof.nombre }}</td>
+                <td>{{ prof.tache }}</td>
+                <td>{{ prof.duree }}</td>
+                {% if prof_formset.can_delete %}
+                    <td>{{ prof.DELETE }}</td>
+                {% endif %}
+                </tr>
+            {% endfor %}
+            </table>
+            {{ doc_formset.management_form }}
+            <table class="w3-table-all">
+                <tr class="w3-dark-grey">
+                    <th></th>
+                    <th>{% trans "Description du document" %}</th>
+                    <th>{% trans "Télécharger" %}</th>
+                </tr>
+                <tr><td colspan="3">{% trans "ATTENTION PAS D'ACCENT DANS LE NOM DES FICHIERS" %}</td></tr>
+                {% for doc in doc_formset %}
+                    <tr>
+                        <td>{{ doc.id }}</td>
+                        <td><b>{{ doc.titrecourt }}</b></td>
+                        <td>{{ doc.documentation }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {{ esms_formset.management_form }}
+            <table class="w3-table-all">
+                <tr class="w3-dark-grey">
+                    <th></th>
+                    <th>{% trans "Code" %}</th>
+                    <th>{% trans "Nombre de places" %}</th>
+                    <th>{% trans "Clientèle" %}</th>
+                    <th>{% trans "Autres services" %}</th>
+                    <th>{% trans "Supprimer" %}</th>
+                </tr>
+                {% for esms in esms_formset %}
+                    <tr>
+                        <td>{{esms.id}}</td>
+                        <td>{{esms.code}}</td>
+                        <td>{{esms.nombre}}</td>
+                        <td>{{esms.clientele|default:""}}</td>
+                        <td>{{esms.autresservices|default:""}}</td>
+                        {% if esms_formset.can_delete %}
+                            <td>{{ esms.DELETE }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+
+         <button type="submit" class="w3-button w3-amber">Save</button>
+            <button type="submit" class="w3-button w3-khaki " name="Savesurplace">Save and continue</button> {% trans "('Save and continue' enregistre et ajoute 3 lignes pour coder des professions)" %}
+         </form>
+    </div>
+
+{% endblock maincontent %}

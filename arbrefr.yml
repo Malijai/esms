@@ -1,0 +1,120 @@
+# -*- coding: utf-8 -*-
+
+'0':
+  name: Peu Intensifs
+  choices: []
+'1':
+  name: Mobiles
+  choices: ['3', '4']
+'2':
+  name: Non-Mobiles
+  choices: ['3', '4']
+'3':
+  name: 24 H/24
+  choices: []
+'4':
+  name: Heures Limitées
+  choices: []
+'5':
+  name: Soins Continus
+  choices: ['6', '7']
+'6':
+  name: Mobiles
+  choices: ['8', '9', '0']
+'7':
+  name: Non-Mobiles
+  choices: ['8', '9', '0']
+'8':
+  name: Très Intensifs
+  choices: []
+'9':
+  name: Modérément Intensifs
+  choices: []
+z:
+  name: Institutionnalisés
+  choices: [a, b, e]
+a:
+  name: Securisés
+  choices: []
+b:
+  name: Génériques Aigus
+  choices: [c, d]
+c:
+  name: Hospitaliers
+  choices: []
+d:
+  name: Non Hospitaliers
+  choices: []
+e:
+  name: Non Aigus
+  choices: [m, n]
+f:
+  name: Duree Limitée
+  choices: [g, h]
+g:
+  name: Soutien 24 H/24
+  choices: []
+h:
+  name: Soutien Quotidien
+  choices: []
+i:
+  name: Sejour Durée Indéfinie
+  choices: [g, h]
+j:
+  name: Durée Limitée
+  choices: [g, h, l]
+k:
+  name: Séjour Durée Indéfinie
+  choices: [g, h, l]
+l:
+  name: Soutien Léger
+  choices: []
+m:
+  name: Hospitaliers
+  choices: [f, i]
+n:
+  name: Non Hospitaliers
+  choices: [j, k]
+o:
+  name: Jour &<br />Activités Structurées
+  choices: [p, q]
+p:
+  name: Aigus
+  choices: []
+q:
+  name: Non Aigus
+  choices: [r, w]
+r:
+  name: Très Intensifs
+  choices: [s, t, u, v]
+s:
+  name: Travail
+  choices: []
+t:
+ name: Activités en <br />rapport avec le Travail
+ choices: []
+u:
+  name: Autre Activité Structurée
+  choices: []
+v:
+  name: Contact Social
+  choices: []
+w:
+  name: Peu Intensif
+  choices: [s, t, u, v]
+x:
+  name: Ambulatoires &<br />Communautaires
+  choices: [y, '5']
+y:
+  name: Soins d'urgence
+  choices: ['1', '2']
+qq:
+  name: Entraide &<br />NonProfessionnalisés
+  choices: []
+rr:
+  name: Soutien &<br />Écoute Téléphonique
+  choices: []
+ss:
+  name: Soutien ou Répit<br />pour Familles ou Proches
+  choices: []
+
