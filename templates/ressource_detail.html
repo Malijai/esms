@@ -64,13 +64,15 @@
         </table>
         <h2>{% trans "ESMS" %}</h2>
         <table class="w3-table-all">
-        <tr><th>{% trans "Code" %}</th><th>{% trans "Nombre de places" %}</th><th>{% trans "Clientèle" %}</th></tr>
-         {% for esms in object.esms_set.all %}
+            <tr><th>{% trans "Code" %}</th><th>{% trans "Nombre de places" %}</th><th>{% trans "Clientèle" %}</th>
+            <th>{% trans "Autres autreinfo" %}</th><th>{% trans "Autres services" %}</th></tr>
+        {% for esms in object.esms_set.all %}
              <tr>
                 <td>{{esms.choix_final}}</td><td>{{esms.nombre|default:""}}</td><td>{{esms.clientele|default:""}}</td>
+                <td>{{esms.autreinfo|default:""}}</td><td>{{esms.autresservices|default:""}}</td>
              </tr>
-         {% endfor %}
-         </table>
+        {% endfor %}
+        </table>
         <br />
 
     </div>
