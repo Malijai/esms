@@ -7,7 +7,7 @@ urlpatterns = [
     re_path(r'^code/(?P<pk>[-\w]+)/(?P<choix>[\w]*)/$', faitinstitution, name='Faitinstitution'),
     re_path(r'^code/(?P<pk>[-\w]+)/(?P<choix>[\w]*)/(?P<histoire>[\w]*)/$', faitinstitution, name='Faitinstitution'),
     path('ressource/new/', ressource_new, name='ressource_new'),
-    path('ressource/<int:pk>[-\w]+)/edit/', ressource_edit, name='ressource_edit'),
-    path('ressource/<int:pk>[-\w]+)/', RessourceDetail.as_view(), name='ressource_detail'),
+    path('ressource/<int:pk>/edit/', ressource_edit, name='ressource_edit'),
+    path('ressource/<int:pk>/', RessourceDetail.as_view(), name='ressource_detail'),
     path('', rlisting, name='listeressources'),
 ]
