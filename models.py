@@ -6,6 +6,12 @@ from esms.esms_constants import CHOIX
 from dataentry.models import Province
 from django.urls import reverse
 
+class Etat(models.Model):
+    description = models.CharField(max_length=100,)
+
+    def __str__(self):
+        return '%s' % (self.description)
+
 
 ## Détails des ressources décrites et catégorisées
 class Ressource(models.Model):
@@ -13,7 +19,7 @@ class Ressource(models.Model):
     ville = models.CharField(verbose_name=_("Municipalité "), help_text=_("Obligatoire"), max_length=100,)
     codepostal = models.CharField(max_length=10, verbose_name=_("Code postal "), null=True, blank=True)
     web = models.CharField(verbose_name=_("Adresse du site web "), max_length=250, null=True, blank=True)
-    telephone = models.CharField(verbose_name=_("Numéro de tel public "), max_length=20, null=True, blank=True)
+    telephone = models.CharField(verbose_name=_("Numéro de tel public "), max_length=100, null=True, blank=True)
     courriel = models.CharField(verbose_name=_("Courriel public "), max_length=200, null=True, blank=True)
     objectif = models.TextField(verbose_name=_("Objectifs de cette ressource "), null=True, blank=True)
     region = models.TextField(verbose_name=_("Région(s) déservie(s) "), null=True, blank=True)
@@ -43,6 +49,7 @@ class Ressource(models.Model):
     author = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    etat = models.ForeignKey(Etat, verbose_name=_("État de la codification"), default=4, blank=True, null=True, on_delete=models.DO_NOTHING)
 
     class Meta:
        ordering = ['nom']

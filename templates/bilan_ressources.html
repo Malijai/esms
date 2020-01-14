@@ -1,0 +1,42 @@
+{% extends 'ressource_base.html' %}
+{% load i18n %}
+
+{% block titre %}
+    <h2>{% trans "BILAN des codification des ressources" %}</h2>
+{% endblock titre %}
+
+{% block maincontent %}
+<div class="w3-row">
+    <div class="w3-quarter">
+    </div>
+    <div class="w3-half w3-center">
+        <table class="w3-table-all w3-border">
+        {% for province, etat_decomptes in sommaire.items %}
+        {% if forloop.first %}
+         <thead>
+             <tr>
+               <th></th>
+                {% for decompte in etat_decomptes %}
+                    <th>{{ decompte|truncatewords:3 }}</th>
+                {% endfor %}
+            </tr>
+         </thead>
+         <tbody>
+        {% else %}
+        <tr>
+            <td>{{ province }}</td>
+            {% for decompte in etat_decomptes %}
+                <td> {{ decompte }}</td>
+            {% endfor %}
+        </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+    </table>
+   </div>
+   <div class="w3-quarter">
+   </div>
+</div>
+{% endblock maincontent %}
+
+

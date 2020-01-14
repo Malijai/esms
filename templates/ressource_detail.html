@@ -10,6 +10,7 @@
     <div class="w3-container w3-padding-8">
         <table class="w3-table-all"  border="1">
         <tr><th  width="30%">{% verbose_name_tag object 'nom' %}</th><th>{{ object.nom }}</th></tr>
+        <tr><td>{% verbose_name_tag object 'etat'%}</td><td><b>{{object.etat|default:"" }}</b></tr>
         <tr><td>{% verbose_name_tag object 'ville'%}</td><td>{{object.ville }}</td></tr>
         <tr><td>{% verbose_name_tag object 'codepostal'%}</td><td>{{object.codepostal }}</td></tr>
         <tr><td>{% verbose_name_tag object 'web'%}</td><td>{{object.web|default:"" }}</td></tr>
@@ -65,7 +66,7 @@
         <h2>{% trans "ESMS" %}</h2>
         <table class="w3-table-all">
             <tr><th>{% trans "Code" %}</th><th>{% trans "Nombre de places" %}</th><th>{% trans "Clientèle" %}</th>
-            <th>{% trans "Autres autreinfo" %}</th><th>{% trans "Autres services" %}</th></tr>
+            <th>{% trans "Autres informations" %}</th><th>{% trans "Autres services" %}</th></tr>
         {% for esms in object.esms_set.all %}
              <tr>
                 <td>{{esms.choix_final}}</td><td>{{esms.nombre|default:""}}</td><td>{{esms.clientele|default:""}}</td>

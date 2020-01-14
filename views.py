@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from esms.esms_constants import CHOIX_FINAL, EXPLICATIONSFR, EXPLICATIONSEN, CHOIXEN, CHOIXFR
 from .forms import RessourceFormSet, RessourceForm, EsmsForm, DocumentFormSet, EsmsFormSet
-from .models import Ressource, Equipe, Esms
+from .models import Ressource, Equipe, Esms, Etat
 from django.views import generic
 from django.db import IntegrityError, transaction
 from django.contrib import messages
@@ -12,6 +12,8 @@ from django.core.paginator import InvalidPage
 from django.utils import translation
 from esms.paginationalpha import NamePaginator
 from django.utils.translation import ugettext_lazy as _
+from dataentry.models import Province
+from collections import OrderedDict
 
 
 @login_required(login_url=settings.LOGIN_URI)
@@ -247,4 +249,25 @@ def rlisting(request):
 
     return render(request, 'ressources_list.html', {'page': page})
 
+
+def bilan_province(request):
+
+    summary = OrderedDict()
+    etats = Etat.objects.all().order_by('description')
+    summary[''] = etats
+    for province in Province.objects.exclude(reponse_en='all').order_by('reponse_en'):
+        etats_province = []
+        for etat in etats:
+            etats_province.append(
+                Ressource.objects.filter(province=province, etat=etat).count()
+            )
+        summary[province] = etats_province
+
+    return render(
+        request,
+        'bilan_ressources.html',
+         {
+            'sommaire': summary,
+         }
+    )
 

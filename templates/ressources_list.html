@@ -6,58 +6,62 @@
 {% endblock titre %}
 
 {% block maincontent %}
-        <div class="w3-row w3-theme-d3">
-            <div class="w3-quarter">
-            <a class="w3-btn w3-dark-grey w3-hover-light-grey" href="{% url 'ressource_new' %}">{% trans "Nouvelle ressource" %}</a>
-        </div>
-            <div class="w3-threequarter">
-                <div class="pagination">
-                    {% for p in page.paginator.pages %}
-                        {% ifequal p page %}
-                            <a class="active" href="">{{ page }}</a>
-                        {% else %}
-                            <a href="?page={{ p.number }}">{{ p }}</a>
-                        {% endifequal %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    <div class="w3-container w3-padding-10">
-        <table class="w3-table-all">
-            <tr><th>{% trans "Nom de la ressource" %}</th><th>Codes</th>
-                <th>{% trans "Coder" %}</th>
-                <th>{% trans "Modifier" %}</th>
-                <th>{% trans "Voir" %}</th></tr>
-            {% for ressource in page.object_list %}
-                <tr><td>{{ressource.nom }}</td>
-                <td><ul>
-                {% for esms in ressource.esms_set.all %}
-                <li>ESMS: {{esms.choix_final}}; {{esms.clientele|default:""}}; N: {{esms.nombre|default:""}};</li>
-                {% endfor %}
-                </ul></td>
-                <td><a href="{% url 'Faitinstitution' ressource.id '' '' %}">{% trans "Ajouter un code" %}</a></td>
-                <td><a href="{% url 'ressource_detail' ressource.id %}">{% trans "Voir les détails" %}</a></td>
-                <td><a href="{% url 'ressource_edit' ressource.id %}">{% trans "Mettre a jour la ressource" %}</a></td>
-            </tr>
-            {% endfor %}
-        </table>
+<div class="w3-row w3-theme-d3">
+    <div class="w3-quarter">
+        <a class="w3-btn w3-dark-grey w3-hover-light-grey" href="{% url 'ressource_new' %}">{% trans "Nouvelle ressource" %}</a>
     </div>
-    <footer>
-        <div class="w3-row w3-theme-d3">
-            <div class="w3-quarter">
-            <a class="w3-btn w3-dark-grey w3-hover-light-grey" href="{% url 'ressource_new' %}">{% trans "Nouvelle ressource" %}</a>
+    <div class="w3-threequarter">
+        <div class="pagination">
+            {% for p in page.paginator.pages %}
+                {% ifequal p page %}
+                    <a class="active" href="">{{ page }}</a>
+                {% else %}
+                    <a href="?page={{ p.number }}">{{ p }}</a>
+                {% endifequal %}
+            {% endfor %}
+            <a class="w3-btn w3-grey w3-hover-light-grey" href="{% url 'ressource_bilan' %}">{% trans "Bilan" %}</a>
         </div>
-            <div class="w3-threequarter">
-                <div class="pagination">
-                    {% for p in page.paginator.pages %}
-                        {% ifequal p page %}
-                            <a class="active" href="">{{ page }}</a>
-                        {% else %}
-                            <a href="?page={{ p.number }}">{{ p }}</a>
-                        {% endifequal %}
-                    {% endfor %}
-                </div>
-            </div>
+    </div>
+</div>
+<div class="w3-container w3-padding-10">
+    <table class="w3-table-all">
+        <tr><th>{% trans "Nom de la ressource" %}</th><th>Codes</th>
+            <th>{% trans "Coder" %}</th>
+            <th>{% trans "Modifier" %}</th>
+            <th>{% trans "Voir" %}</th>
+            <th>{% trans "Etat" %}</th>
+        </tr>
+        {% for ressource in page.object_list %}
+         <tr><td>{{ ressource.nom }}</td>
+            <td><ul>
+            {% for esms in ressource.esms_set.all %}
+            <li>ESMS: {{esms.choix_final}}; {{esms.clientele|default:""}}; N: {{esms.nombre|default:""}};</li>
+            {% endfor %}
+            </ul></td>
+            <td><a href="{% url 'Faitinstitution' ressource.id '' '' %}">{% trans "Ajouter un code" %}</a></td>
+            <td><a href="{% url 'ressource_detail' ressource.id %}">{% trans "Voir les détails" %}</a></td>
+            <td><a href="{% url 'ressource_edit' ressource.id %}">{% trans "Mettre a jour la ressource" %}</a></td>
+            <td>{{ ressource.etat }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<footer>
+<div class="w3-row w3-theme-d3">
+    <div class="w3-quarter">
+        <a class="w3-btn w3-dark-grey w3-hover-light-grey" href="{% url 'ressource_new' %}">{% trans "Nouvelle ressource" %}</a>
+    </div>
+    <div class="w3-threequarter">
+        <div class="pagination">
+        {% for p in page.paginator.pages %}
+            {% ifequal p page %}
+                <a class="active" href="">{{ page }}</a>
+            {% else %}
+                <a href="?page={{ p.number }}">{{ p }}</a>
+            {% endifequal %}
+        {% endfor %}
         </div>
-    </footer>
+    </div>
+</div>
+</footer>
 {% endblock maincontent %}
