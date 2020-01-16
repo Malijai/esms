@@ -33,7 +33,7 @@ def faitinstitution(request, pk, choix='', histoire=''):
         entrees = [(c, CHOIX[c]['name'], EXPLICATIONS[c]) for c in liste]
         return render(
             request,
-            'classification_esms.html',
+                'classification_esms.html',
                 {'choisi': '',
                  'choixs': '',
                  'choixprecedent': '',
@@ -198,7 +198,7 @@ def ressource_edit(request, pk):
         prof_formset = RessourceFormSet(request.POST, request.FILES, instance=ressource)
         doc_formset = DocumentFormSet(request.POST, request.FILES, instance=ressource)
         esms_formset = EsmsFormSet(request.POST, request.FILES, instance=ressource)
-        if prof_formset.is_valid() and doc_formset.is_valid() and esms_formset.is_valid :
+        if prof_formset.is_valid() and doc_formset.is_valid() and esms_formset.is_valid:
             prof_formset.save()
             doc_formset.save()
             esms_formset.save()
@@ -217,14 +217,8 @@ def ressource_edit(request, pk):
         doc_formset = DocumentFormSet(instance=ressource)
         esms_formset = EsmsFormSet(instance=ressource)
 
-    context = {
-        'form': ress_form,
-        'prof_formset': prof_formset,
-        'doc_formset': doc_formset,
-        'esms_formset':esms_formset,
-        'entete': entete,
-        'pk': pk
-    }
+    context = dict(form=ress_form, prof_formset=prof_formset, doc_formset=doc_formset, esms_formset=esms_formset,
+                   entete=entete, pk=pk)
     return render(request, "ressource_edit.html", context)
 
 

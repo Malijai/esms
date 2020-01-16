@@ -49,7 +49,7 @@ class Ressource(models.Model):
     author = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    etat = models.ForeignKey(Etat, verbose_name=_("État de la codification"), default=4, blank=True, null=True, on_delete=models.DO_NOTHING)
+    etat = models.ForeignKey(Etat, verbose_name=_("État de la codification"), default=4, on_delete=models.DO_NOTHING)
 
     class Meta:
        ordering = ['nom']
