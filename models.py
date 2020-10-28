@@ -74,7 +74,7 @@ class Professionnels(models.Model):
         ordering = ['description']
 
     def __str__(self):
-        return '%s' % self.description
+        return '%s' % (self.description)
 
 
 class Equipe(models.Model):

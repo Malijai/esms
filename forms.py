@@ -33,6 +33,7 @@ class DocumentForm(forms.ModelForm):
 RessourceFormSet = inlineformset_factory(Ressource, Equipe, form=RessourceForm,
                                          extra=3, can_delete=True)
 
+
 DocumentFormSet = inlineformset_factory(Ressource, Document, form=DocumentForm,
                                          extra=2, can_delete=True)
 
